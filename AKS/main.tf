@@ -15,13 +15,13 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dynamic default_node_pool {
     for_each = var.system_node_pool
     content {
-      name                = each.value.name
-      node_count          = each.value.node_count
-      vm_size             = each.value.vm_size
-      vnet_subnet_id      = each.value.vnet_subnet_id
+      name                = default_node_pool.value.name
+      node_count          = default_node_pool.value.node_count
+      vm_size             = default_node_pool.value.vm_size
+      vnet_subnet_id      = default_node_pool.value.vnet_subnet_id
       auto_scaling_enabled = true
-      min_count           = each.value.min_count
-      max_count           = each.value.max_count
+      min_count           = default_node_pool.value.min_count
+      max_count           = default_node_pool.value.max_count
     }
   }
 
