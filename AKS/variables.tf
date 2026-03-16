@@ -29,12 +29,14 @@ variable "tags" {
 
 variable "system_node_pool" {
   type = object({
-    vm_size    = string
-    node_count = number
-    min_count  = number
-    max_count  = number
-    subnet_id  = string
+    vm_size        = string
+    node_count     = number
+    min_count      = number
+    max_count      = number
+    vnet_subnet_id = string
+    name           = string
   })
+ description = "Provide the System Node Pool configuration details"
 }
 
 variable "node_pools" {
