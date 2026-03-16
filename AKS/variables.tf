@@ -53,21 +53,6 @@ variable "node_pools" {
     
 }
 
-variable "system_node_vm_size" {
-    type = string
-    description = "Provide the VM Size for the System Node Pool"
-}
-
-variable "system_node_count" {
-    type = number
-    description = "Provide the Node Count for the System Node Pool"
-}
-
-variable "subnet_id" {
-  type = string
-  description = "Provide the subnet id for Node Pool"
-}
-
 variable "role_based_access_control_enabled" {
   type = bool
   description = "Is Role based access control enabled"
@@ -87,16 +72,4 @@ variable "log_analytics_workspace_id" {
   type = string
   description = "Provide the Log Analytics Workspace ID for monitoring (optional)"
   default = null
-}
-
-variable "node_pool_min_count" {
-  type = number
-  description = "Provide the Node Pool min count default is 1"
-  default = 1
-}
-
-variable "node_pool_max_count" {
-  type = number
-  description = "Provide the Node Pool max count default is 5"
-  default = 5
 }
