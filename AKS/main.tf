@@ -12,17 +12,14 @@ resource "azurerm_kubernetes_cluster" "aks" {
     type = "SystemAssigned"
   }
 
-  dynamic default_node_pool {
-    for_each = var.system_node_pool
-    content {
-      name                = default_node_pool.value.name
-      node_count          = default_node_pool.value.node_count
-      vm_size             = default_node_pool.value.vm_size
-      vnet_subnet_id      = default_node_pool.value.vnet_subnet_id
-      auto_scaling_enabled = true
-      min_count           = default_node_pool.value.min_count
-      max_count           = default_node_pool.value.max_count
-    }
+  default_node_pool {
+    name                = var.default_node_pool_name
+    node_count          = var.default_node_pool_node_count
+    vm_size             = var.default_node_pool_vm_size
+    vnet_subnet_id      = var.default_node_pool_vnet_subnet_id
+    auto_scaling_enabled = true
+    min_count           = var.default_node_pool_min_count
+    max_count           = var.default_node_pool_max_count
   }
 
   role_based_access_control_enabled = var.role_based_access_control_enabled ? true : false

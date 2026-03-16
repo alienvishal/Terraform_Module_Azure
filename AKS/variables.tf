@@ -27,16 +27,36 @@ variable "tags" {
   default = {}
 }
 
-variable "system_node_pool" {
-  type = object({
-    vm_size        = string
-    node_count     = number
-    min_count      = number
-    max_count      = number
-    vnet_subnet_id = string
-    name           = string
-  })
- description = "Provide the System Node Pool configuration details"
+variable "default_node_pool_name" {
+    type = string
+    description = "Provide the name for the default node pool"
+}
+
+variable "default_node_pool_node_count" {
+    type = number
+    description = "Provide the node count for the default node pool" 
+}
+
+variable "default_node_pool_vm_size" {
+    type = string
+    description = "Provide the VM size for the default node pool"
+}
+
+variable "default_node_pool_vnet_subnet_id" {
+    type = string
+    description = "Provide the subnet ID for the default node pool"
+}
+
+variable "default_node_pool_min_count" {
+  type = number
+  description = "Provide the minimum node count for the default node pool (Optional)"
+  default = 1
+}
+
+variable "default_node_pool_max_count" {
+  type = number
+  description = "Provide the maximum node count for the default node pool (Optional)"
+  default = 3
 }
 
 variable "node_pools" {
