@@ -22,6 +22,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
       auto_scaling_enabled = true
       min_count           = default_node_pool.value.min_count
       max_count           = default_node_pool.value.max_count
+      temporary_name_for_rotation = default_node_pool.value.temporary_name_for_rotation
     }
   }
 

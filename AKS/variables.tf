@@ -35,6 +35,7 @@ variable "default_node_pool" {
     vnet_subnet_id = optional(string, null)
     min_count = optional(number,1)
     max_count = optional(number,3)
+    temporary_name_for_rotation = optional(string, null)
   })
   description = "Provide the Default Node Pool configuration"
 }
