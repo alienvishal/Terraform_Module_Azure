@@ -7,15 +7,7 @@ resource "azurerm_linux_function_app" "linux_func" {
   storage_account_access_key = var.storage_account_primary_access_key
   service_plan_id            = var.app_svc_plan_id
   functions_extension_version = var.functions_extension_version
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-  var.tags)
+  tags = var.tags
 
   dynamic "identity" {
     for_each = var.system_identity == true ? ["enabled"] : []
@@ -81,15 +73,7 @@ resource "azurerm_windows_function_app" "windows_func" {
   service_plan_id            = var.app_svc_plan_id
   vnet_image_pull_enabled    = var.vnet_image_pull_enabled
   functions_extension_version = var.functions_extension_version
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-  var.tags)
+  tags = var.tags
 
   site_config {
     always_on              = var.is_always_on

@@ -7,14 +7,5 @@ resource "azurerm_redis_cache" "rds" {
   sku_name             = var.rds_sku
   minimum_tls_version  = 1.2
   non_ssl_port_enabled = false
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-    var.tags
-  )
+  tags = var.tags
 }

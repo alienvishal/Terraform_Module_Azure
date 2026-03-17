@@ -33,14 +33,5 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled      = var.is_purge_protection_enabled
   soft_delete_retention_days    = var.soft_delete_retention_days
   public_network_access_enabled = var.is_public_network_access_enabled
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-    var.tags
-  )
+  tags = var.tags
 }

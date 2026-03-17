@@ -123,30 +123,10 @@ variable "app_insight_instrument_key" {
   default = null
 }
 
-variable "product_owner" {
-  type        = string
-  description = "Provide the Product Owner name"
-}
-
-variable "project_name" {
-  type        = string
-  description = "Provide the project name"
-}
-
 variable "app_settings" {
   type        = map(any)
   description = "(Optional) Provide the App Settings"
   default     = {}
-}
-
-variable "department" {
-  type        = string
-  description = "Provide the Department name"
-}
-
-variable "cost_center" {
-  type        = string
-  description = "Provide the Cost Center"
 }
 
 variable "tags" {

@@ -21,13 +21,7 @@ resource "azurerm_cognitive_account" "openai" {
     }
   }
   
-  tags                = merge({
-    Owner         = var.product_owner,
-    Department    = var.department
-    "Cost Center" = var.cost_center
-    ProjectName   = var.project_name,
-    deployment    = "terraform"
-}, var.tags)
+  tags                = var.tags
    
   custom_subdomain_name = var.custom_subdomain_name
 }

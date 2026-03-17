@@ -149,13 +149,5 @@ resource "azurerm_application_gateway" "appgw" {
     }
   }
 
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-  var.tags)
+  tags = var.tags
 }

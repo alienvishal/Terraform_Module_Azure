@@ -13,16 +13,7 @@ resource "azurerm_storage_account" "stg" {
       error_message = "If account_tier is 'Premium', then account_kind must be either 'BlockBlobStorage' or 'FileStorage'."
     }
   }
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-    var.tags
-  )
+  tags = var.tags
 }
 
 resource "azurerm_storage_container" "account_blob" {

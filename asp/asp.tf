@@ -6,14 +6,5 @@ resource "azurerm_service_plan" "asp" {
   sku_name                   = var.sku_name
   app_service_environment_id = var.ase_id
 
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-    var.tags
-  )
+  tags = var.tags
 }

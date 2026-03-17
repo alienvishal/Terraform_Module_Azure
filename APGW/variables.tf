@@ -49,24 +49,6 @@ variable "waf_configuration" {
   }
 }
 
-variable "product_owner" {
-  type = string
-}
-
-variable "project_name" {
-  type = string
-}
-
-variable "department" {
-  type        = string
-  description = "Provide the Department name"
-}
-
-variable "cost_center" {
-  type        = string
-  description = "Provide the Cost Center"
-}
-
 variable "tags" {
   type    = map(any)
   default = {}

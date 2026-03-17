@@ -6,14 +6,5 @@ resource "azurerm_public_ip" "public_ip" {
   sku                 = var.sku
 
   zones               = var.zones
-  tags = merge(
-    {
-      Owner         = var.product_owner,
-      Department    = var.department
-      "Cost Center" = var.cost_center
-      ProjectName   = var.project_name,
-      deployment    = "terraform"
-    },
-    var.tags
-  )
+  tags = var.tags
 }

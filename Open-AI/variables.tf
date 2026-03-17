@@ -77,25 +77,7 @@ variable "custom_subdomain_name" {
     error_message = "Subdomain must start with a letter, be 3-63 characters, and contain only letters, digits, and hyphens."
   }
 }
-variable "product_owner" {
-  type        = string
-  description = "Provide the Product Owner Name"
-}
- 
-variable "project_name" {
-  type        = string
-  description = "Provide the Project Name"
-}
- 
-variable "department" {
-  type        = string
-  description = "Provide the Department name"
-}
- 
-variable "cost_center" {
-  type        = string
-  description = "Provide the Cost Center"
-}
+
 
 variable "public_network_access_enabled" {
   type = bool
