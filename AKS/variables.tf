@@ -74,3 +74,9 @@ variable "log_analytics_workspace_id" {
   description = "Provide the Log Analytics Workspace ID for monitoring (optional)"
   default = null
 }
+
+variable "private_cluster_enabled" {
+  type = bool
+  description = "Do you want private cluster to be enabled"
+  default = false
+}

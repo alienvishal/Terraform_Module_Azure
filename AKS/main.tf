@@ -6,7 +6,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   kubernetes_version  = var.kubernetes_version != null ? var.kubernetes_version : null
 
-  private_cluster_enabled = true
+  private_cluster_enabled = var.private_cluster_enabled
 
   identity {
     type = "SystemAssigned"
