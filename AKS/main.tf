@@ -46,8 +46,59 @@ resource "azurerm_kubernetes_cluster" "aks" {
     for_each = var.log_analytics_workspace_id != null ? [var.log_analytics_workspace_id] : []
     content {
       log_analytics_workspace_id = oms_agent.value
+      msi_auth_for_monitoring_enabled = var.msi_auth_for_monitoring_enabled
     }
   }
 
+  key_vault_secrets_provider {
+    secret_rotation_enabled = var.secret_rotation_enabled
+  }
+
   tags = var.tags
+}
+
+resource "azurerm_role_assignment" "acr_pull" {
+  count = var.acr_id != null ? 1 : 0
+
+  scope = var.acr_id
+  role_definition_name = "AcrPull"
+  principal_id = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+
+# SSL Key Vault Access
+resource "azurerm_role_assignment" "ssl_key_vault_secrets_user" {
+  count                = var.ssl_key_vault_id != null ? 1 : 0
+  scope                = var.ssl_key_vault_id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+
+resource "azurerm_role_assignment" "ssl_key_vault_certificates_user" {
+  count                = var.ssl_key_vault_id != null ? 1 : 0
+  scope                = var.ssl_key_vault_id
+  role_definition_name = "Key Vault Certificate User"
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+
+# Secrets Key Vault Access
+resource "azurerm_role_assignment" "secrets_key_vault_secrets_user" {
+  count = var.secrets_key_vault_id != null ? 1 : 0
+  scope                = var.secrets_key_vault_id
+  role_definition_name = "Key Vault Secrets User"
+  principal_id         = azurerm_kubernetes_cluster.aks.kubelet_identity[0].object_id
+}
+
+# Allow AKS to manage load balancer in frontend subnet
+resource "azurerm_role_assignment" "frontend_subnet_network_contributor" {
+  count = var.frontend_subnet_id != null ? 1 : 0
+  scope                = var.frontend_subnet_id
+  role_definition_name = "Network Contributor"
+  principal_id         = azurerm_kubernetes_cluster.aks.identity[0].principal_id
+}
+
+# Need this so that LB can forward traffic to AKS subnet
+resource "azurerm_role_assignment" "aks_subnet_network_contributor" {
+  scope                = var.default_node_pool.vnet_subnet_id
+  role_definition_name = "Network Contributor"
+  principal_id         = azurerm_kubernetes_cluster.aks.identity[0].principal_id
 }

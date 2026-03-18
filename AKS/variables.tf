@@ -80,3 +80,39 @@ variable "private_cluster_enabled" {
   description = "Do you want private cluster to be enabled"
   default = false
 }
+
+variable "acr_id" {
+  description = "ID of the exisiting Azure Container Registry to attach"
+  type = string
+  default = null
+}
+
+variable "msi_auth_for_monitoring_enabled" {
+  type = bool
+  description = "Enable MSI auth for monitoring (optional)"
+  default = false
+}
+
+variable "secret_rotation_enabled" {
+  type = bool
+  description = "Do you want secret rotation enabled"
+  default = false
+}
+
+variable "frontend_subnet_id" {
+  description = "ID of the subnet for Application Gateway"
+  type        = string
+  default = null
+}
+
+variable "ssl_key_vault_id" {
+  description = "ID of the existing Key Vault for SSL certificates"
+  type        = string
+  default = null
+}
+
+variable "secrets_key_vault_id" {
+  description = "ID of the existing Key Vault for application secrets"
+  type        = string
+  default = null
+}
