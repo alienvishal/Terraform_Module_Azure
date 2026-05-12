@@ -113,3 +113,40 @@ resource "azurerm_firewall" "firewall" {
 
   tags = var.tags
 }
+
+resource "azurerm_monitor_diagnostic_setting" "firewall_diagnostics" {
+  count                      = var.enable_diagnostics && (var.log_analytics_workspace_id != null || var.storage_account_id != null) ? 1 : 0
+  name                       = "${var.firewall_name}-diagnostics"
+  target_resource_id         = azurerm_firewall.firewall.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+  storage_account_id         = var.storage_account_id
+
+  enabled_log {
+    category = "AzureFirewallApplicationRule"
+  }
+
+  enabled_log {
+    category = "AzureFirewallNetworkRule"
+  }
+
+  enabled_log {
+    category = "AzureFirewallDnsProxy"
+  }
+
+  enabled_log {
+    category = "AZFWApplicationRuleAggregation"
+  }
+
+  enabled_log {
+    category = "AZFWNetworkRuleAggregation"
+  }
+
+  enabled_log {
+    category = "AZFWNatRuleAggregation"
+  }
+
+  metric {
+    category = "AllMetrics"
+    enabled  = true
+  }
+}

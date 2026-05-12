@@ -106,6 +106,24 @@ variable "rule_collection_groups" {
   default     = []
 }
 
+variable "log_analytics_workspace_id" {
+  type        = string
+  description = "The ID of the Log Analytics Workspace for diagnostic settings (optional)"
+  default     = null
+}
+
+variable "storage_account_id" {
+  type        = string
+  description = "The ID of the Storage Account for diagnostic settings (optional)"
+  default     = null
+}
+
+variable "enable_diagnostics" {
+  type        = bool
+  description = "Enable diagnostic settings for the Azure Firewall"
+  default     = false
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to the Azure Firewall"

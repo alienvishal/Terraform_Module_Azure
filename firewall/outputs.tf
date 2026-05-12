@@ -22,3 +22,8 @@ output "rule_collection_group_ids" {
   description = "The IDs of the rule collection groups"
   value       = { for k, v in azurerm_firewall_policy_rule_collection_group.rule_groups : v.name => v.id }
 }
+
+output "diagnostic_settings_id" {
+  description = "The ID of the diagnostic settings for the firewall"
+  value       = try(azurerm_monitor_diagnostic_setting.firewall_diagnostics[0].id, null)
+}
