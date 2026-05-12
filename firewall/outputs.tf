@@ -13,11 +13,6 @@ output "firewall_private_ip" {
   value       = azurerm_firewall.firewall.ip_configuration[0].private_ip_address
 }
 
-output "firewall_public_ip" {
-  description = "The public IP address of the Azure Firewall"
-  value       = azurerm_firewall.firewall.ip_configuration[0].public_ip_address
-}
-
 output "firewall_policy_id" {
   description = "The ID of the Firewall Policy"
   value       = local.create_policy ? azurerm_firewall_policy.firewall_policy[0].id : var.firewall_policy_id
