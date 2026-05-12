@@ -15,7 +15,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "node_pools" {
 
   vnet_subnet_id = each.value.subnet_id
 
-  mode = "User"
+  mode = each.value.mode != null ? each.value.mode : "User"
 
   tags = var.tags
 }

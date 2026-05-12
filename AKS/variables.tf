@@ -48,10 +48,10 @@ variable "node_pools" {
     subnet_id   = string
     node_labels = optional(map(string), {})
     node_taints = optional(list(string), [])
+    mode        = optional(string, null)
   }))
    description = "Provide the configuration for additional node pools (optional)"
    default = {}
-    
 }
 
 variable "role_based_access_control_enabled" {
