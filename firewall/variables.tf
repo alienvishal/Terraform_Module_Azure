@@ -118,6 +118,12 @@ variable "storage_account_id" {
   default     = null
 }
 
+variable "log_analytics_destination_type" {
+  type        = string
+  description = "The destination type for Log Analytics diagnostics. Use 'Dedicated' for resource-specific logs or 'AzureDiagnostics' for legacy workspace state."
+  default     = "Dedicated"
+}
+
 variable "enable_diagnostics" {
   type        = bool
   description = "Enable diagnostic settings for the Azure Firewall"
