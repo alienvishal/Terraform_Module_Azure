@@ -115,7 +115,7 @@ resource "azurerm_firewall" "firewall" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "firewall_diagnostics" {
-  count                      = var.enable_diagnostics && (var.log_analytics_workspace_id != null || var.storage_account_id != null) ? 1 : 0
+  count                      = var.enable_diagnostics ? 1 : 0
   name                       = "${var.firewall_name}-diagnostics"
   target_resource_id         = azurerm_firewall.firewall.id
   log_analytics_workspace_id = var.log_analytics_workspace_id

@@ -122,6 +122,11 @@ variable "enable_diagnostics" {
   type        = bool
   description = "Enable diagnostic settings for the Azure Firewall"
   default     = false
+
+  validation {
+    condition     = !var.enable_diagnostics || var.log_analytics_workspace_id != null || var.storage_account_id != null
+    error_message = "At least one of log_analytics_workspace_id or storage_account_id must be provided when enable_diagnostics is true."
+  }
 }
 
 variable "tags" {
