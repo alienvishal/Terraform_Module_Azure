@@ -19,7 +19,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "rule_groups" {
   priority           = each.value.priority
 
   dynamic "application_rule_collection" {
-    for_each = try(each.value.application_rule_collections, {})
+    for_each = coalesce(each.value.application_rule_collections, {})
     content {
       name     = application_rule_collection.value.name
       priority = application_rule_collection.value.priority
@@ -49,7 +49,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "rule_groups" {
   }
 
   dynamic "network_rule_collection" {
-    for_each = try(each.value.network_rule_collections, {})
+    for_each = coalesce(each.value.network_rule_collections, {})
     content {
       name     = network_rule_collection.value.name
       priority = network_rule_collection.value.priority
@@ -72,7 +72,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "rule_groups" {
   }
 
   dynamic "nat_rule_collection" {
-    for_each = try(each.value.nat_rule_collections, {})
+    for_each = coalesce(each.value.nat_rule_collections, {})
     content {
       name     = nat_rule_collection.value.name
       priority = nat_rule_collection.value.priority
