@@ -32,6 +32,7 @@ variable "default_node_pool" {
     name = string
     node_count = number
     vm_size = string
+    auto_scaling_enabled = optional(bool, true)
     vnet_subnet_id = optional(string, null)
     min_count = optional(number,1)
     max_count = optional(number,3)
