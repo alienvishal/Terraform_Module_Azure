@@ -123,7 +123,7 @@ resource "azurerm_monitor_diagnostic_setting" "firewall_diagnostics" {
   log_analytics_destination_type = var.log_analytics_destination_type
 
   enabled_log {
-    category = "allLogs"
+    category_group = "allLogs"
   }
 
   metric {
