@@ -20,8 +20,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
       vm_size             = default_node_pool.value.vm_size
       vnet_subnet_id      = default_node_pool.value.vnet_subnet_id
       auto_scaling_enabled = default_node_pool.value.auto_scaling_enabled
-      min_count           = default_node_pool.value.min_count
-      max_count           = default_node_pool.value.max_count
+      min_count           = default_node_pool.value.auto_scaling_enabled ? default_node_pool.value.min_count : null
+      max_count           = default_node_pool.value.auto_scaling_enabled ? default_node_pool.value.max_count : null
       temporary_name_for_rotation = default_node_pool.value.temporary_name_for_rotation
     }
   }
