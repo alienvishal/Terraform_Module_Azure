@@ -123,27 +123,7 @@ resource "azurerm_monitor_diagnostic_setting" "firewall_diagnostics" {
   log_analytics_destination_type = var.log_analytics_destination_type
 
   enabled_log {
-    category = "AzureFirewallApplicationRule"
-  }
-
-  enabled_log {
-    category = "AzureFirewallNetworkRule"
-  }
-
-  enabled_log {
-    category = "AzureFirewallDnsProxy"
-  }
-
-  enabled_log {
-    category = "AZFWApplicationRuleAggregation"
-  }
-
-  enabled_log {
-    category = "AZFWNetworkRuleAggregation"
-  }
-
-  enabled_log {
-    category = "AZFWNatRuleAggregation"
+    category = "allLogs"
   }
 
   metric {
