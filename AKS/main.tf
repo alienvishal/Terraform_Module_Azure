@@ -42,6 +42,16 @@ resource "azurerm_kubernetes_cluster" "aks" {
     load_balancer_sku = "standard"
   }
 
+  dynamic service_mesh_profile {
+    for_each = var.istio_enabled ? [var.istio_revision] : []
+    content {
+      mode = "Istio"
+      revisions = [
+        service_mesh_profile.value
+      ]
+    }
+  }
+
   dynamic oms_agent {
     for_each = var.log_analytics_workspace_id != null ? [var.log_analytics_workspace_id] : []
     content {

@@ -117,3 +117,15 @@ variable "secrets_key_vault_id" {
   type        = string
   default = null
 }
+
+variable "istio_enabled" {
+  description = "Do you want to enable Istio Service Mesh"
+  type = bool
+  default = false
+}
+
+variable "istio_revision" {
+  description = "Istio revision to use for the cluster (optional)"
+  type = string
+  default = null
+}
